@@ -10,24 +10,40 @@
         var WORDS     = ["booger", "apple", "hackbright", "mango"];
         var SCRAMBLED = ["oogreb", "papel", "backrhight", "goman"];
 
+        function scramble(userInput) {
+            var result = userInput.split("");
+            for(var i = 0; i < userInput.length; i++) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var scrambler = result[i];
+                result[i] = result[j];
+                result[j] = scrambler;
+            }
+            return result.join("");
+        }
+
         var playing = true;
+
 
         while (playing) {
 
-            var choiceIndex = Math.floor(Math.random()*WORDS.length)
-            var word = WORDS[choiceIndex];
-            var scrambledWord = SCRAMBLED[choiceIndex];
-            alert("The scrambled word is: " + scrambledWord);
-            var guess = prompt("Please guess the original word: ");
-            var trimmedLowerGuess = guess.toLowerCase().trim();
+            var userInput = prompt("Please give a word for me to scramble: ");
+            var word = scramble(userInput);
+            alert(word)
 
-            if (trimmedLowerGuess === word) {
-                alert("You did it!");
-            }
+            // var choiceIndex = Math.floor(Math.random()*WORDS.length)
+            // var word = WORDS[choiceIndex];
+            // var scrambledWord = SCRAMBLED[choiceIndex];
+            // alert("The scrambled word is: " + scrambledWord);
+            // var guess = prompt("Please guess the original word: ");
+            // var trimmedLowerGuess = guess.toLowerCase().trim();
 
-            else {
-                alert("Sorry, you lose. Correct word was " + word +".");
-            }
+            // if (trimmedLowerGuess === word) {
+            //     alert("You did it!");
+            // }
+
+            // else {
+            //     alert("Sorry, you lose. Correct word was " + word +".");
+            // }
 
             playing = confirm("Press OK To keep playing or Cancel to quit");
 
